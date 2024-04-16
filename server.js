@@ -1840,7 +1840,7 @@ function sendMessages(ws, messages, body) {
 
 async function currentVersion() {
 	let output = new Promise(resolve => {
-		fs.readFile(`${config.path}/.git/refs/heads/main`, 'utf8', (err, data) => {
+		fs.readFile(`${config.path}/.git/refs/heads/master`, 'utf8', (err, data) => {
 			resolve(data.trim());
 		});
 	})
