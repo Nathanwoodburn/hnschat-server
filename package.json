@@ -1,0 +1,11 @@
+{
+  "type": "commonjs",
+  "dependencies": {
+    "expo-server-sdk": "^3.7.0",
+    "idna-uts46-hx": "^4.1.2",
+    "janode": "^1.6.7",
+    "mysql": "^2.18.1",
+    "request": "^2.88.2",
+    "ws": "^8.12.0"
+  }
+}
