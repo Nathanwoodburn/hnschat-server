@@ -1023,7 +1023,10 @@ async function handle(ws, parsed) {
 				if (r.length) {
 					let remove = db("DELETE FROM uploads WHERE id = ? AND session = ?", [body.id, ws.session]);
 					if (remove) {
-						fs.rmSync(`${config.path}/uploads/${body.id}`);
+						try {
+							fs.rmSync(`${config.path}/uploads/${body.id}`);
+						}
+						catch {}
 					}
 				}
 			});
