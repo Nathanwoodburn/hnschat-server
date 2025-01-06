@@ -1,5 +1,7 @@
 {
-  "providers": [],
+  "providers": [
+    "node"
+  ],
   "buildImage": "ghcr.io/railwayapp/nixpacks:ubuntu-1731369831",
   "variables": {
     "CI": "true",
