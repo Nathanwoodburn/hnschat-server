@@ -24,10 +24,10 @@
         "npm ci"
       ],
       "cacheDirectories": [
-        "/root/.npm"
+        ".npm"
       ],
       "paths": [
-        "/app/node_modules/.bin"
+        "node_modules/.bin"
       ]
     },
     "setup": {
