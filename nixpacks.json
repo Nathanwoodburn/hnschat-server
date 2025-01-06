@@ -23,7 +23,7 @@
         "setup"
       ],
       "cmds": [
-        "npm ci"
+        "npm install"
       ],
       "cacheDirectories": [
         ".npm"
