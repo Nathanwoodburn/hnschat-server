@@ -10,8 +10,6 @@ const { Expo } = require("expo-server-sdk");
 const config = require("./config.json");
 
 var wss;
-var Janode;
-var janus;
 
 var sessions = [];
 var users = [];
@@ -31,7 +29,7 @@ const sql = mysql.createPool({
 });
 
 function log(e) {
-	//console.log(e);
+	console.log(e);
 }
 
 async function db(query, values=[]) {
@@ -93,55 +91,11 @@ const getMethods = (obj) => {
   return [...properties.keys()].filter(item => typeof obj[item] === 'function')
 }
 
-async function janusConnect() {
-	janus = await Janode.connect({
-		is_admin: true,
-		address: {
-			url: config.janusWs,
-			apisecret: config.janusKey
-		}
-	});
-	return;
-}
 
-async function janusRequest(request) {
-	if (!janus || janus._transport._closed) {
-		await janusConnect();
-	}
 
-	let response = await janus.sendRequest(request);
-	return response;
-}
-
-async function makeVideoRoom(id, name) {
-	return await janusRequest({
-		janus: "message_plugin",
-		plugin: "janus.plugin.videoroom",
-		request: {
-			request: "create",
-			admin_key: config.janusKey,
-			secret: config.janusKey,
-			is_private: true,
-			permanent: true,
-
-			room: id,
-			description: name,
-			
-			publishers: 10,
-			audiolevel_event: true,
-			audio_active_packets: 10,
-			audio_level_average: 50,
-			notify_joining: true,
-			fir_freq: 10,
-			bitrate: 4096000
-		}
-	});
-}
 
 async function init() {
-	Janode = await import(`${config.path}/node_modules/janode/src/janode.js`).then(module => {
-		return module.default;
-	});
+	
 
 	await fetchUsers();
 	await fetchChannels();
@@ -158,6 +112,7 @@ async function init() {
 		});
 	});
 
+	console.log("Starting...");
 	wss = new WebSocket.Server({ port: 4444 });
 	wss.on('connection', (ws, req) => {
 		try {
