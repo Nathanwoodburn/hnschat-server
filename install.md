@@ -1,7 +1,7 @@
 # Install
 
 ```sh
-sudo apt install php libapache2-mod-php apache2 mysql-server php-mysql curl git
+sudo apt install php libapache2-mod-php apache2 mysql-server php-mysql curl git php-curl php-dom
 a2enmod proxy
 a2enmod headers
 a2enmod rewrite
