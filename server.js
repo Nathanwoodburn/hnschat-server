@@ -1569,13 +1569,11 @@ async function getStaked() {
 	var output = [];
 	await db("SELECT * FROM channels WHERE slds = 1").then(r => {
 		r.forEach(c => {
-			if (c.slds) {
-				let data = {
-					name: c.name,
-					hip2: c.hip2
-				}
-				output.push(data);
+			let data = {
+				name: c.name,
+				hip2: c.hip2
 			}
+			output.push(data);
 		});
 	});
 
