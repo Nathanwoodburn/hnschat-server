@@ -1565,17 +1565,18 @@ function dataForDomain(domain) {
 	})[0];
 }
 
-function getStaked() {
+async function getStaked() {
 	var output = [];
-
-	channels.forEach(c => {
-		if (c.slds) {
-			let data = {
-				name: c.name,
-				hip2: c.hip2
+	await db("SELECT * FROM channels WHERE slds = 1").then(r => {
+		r.forEach(c => {
+			if (c.slds) {
+				let data = {
+					name: c.name,
+					hip2: c.hip2
+				}
+				output.push(data);
 			}
-			output.push(data);
-		}
+		});
 	});
 
 	let sorted = output.sort((a, b) => {
