@@ -224,8 +224,9 @@ async function fetchChannels() {
 			});
 		});
 
-		slds = getStaked();
+		// slds = await getStaked();
 	});
+	slds = await getStaked();
 }
 
 function typingUpdates() {
