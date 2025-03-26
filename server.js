@@ -952,7 +952,7 @@ async function handle(ws, parsed) {
 					break;
 				}
 
-				await makeVideoRoom(id, name);
+				// await makeVideoRoom(id, name);
 				sendSuccess(ws, command, { user: body.user, id: id, fee: fee });
 			}
 			break;
